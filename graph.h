@@ -2,6 +2,7 @@
 #define GRAPH_H
 #include <list>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 template<class G>
@@ -42,6 +43,16 @@ class CNode
             ((tmp->enodo[1])->EdgeNod).remove(tmp);
             delete tmp;
         }
+    }
+    
+    double b(){
+        double tmp_b, b_edge;
+        b_edge = EdgeNod[0]->value;
+        for(typename list<Edge*>::iterator it=EdgeNod.begin(); it!=EdgeNod.end(); ++it) {
+            tmp_b = (*it)->value;
+            b_edge = min(b_edge, tmp_b);
+        }
+        return b_edge;
     }
 	~CNode(){};
 };
